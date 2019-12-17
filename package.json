@@ -1,0 +1,19 @@
+{
+  "name": "backend-node",
+  "version": "1.0.0",
+  "description": "curso codevstack backend con node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Msmpunk/cs-backend-node.git"
+  },
+  "author": "Mario Alberto Sanchez Maldonado",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Msmpunk/cs-backend-node/issues"
+  },
+  "homepage": "https://github.com/Msmpunk/cs-backend-node#readme"
+}
