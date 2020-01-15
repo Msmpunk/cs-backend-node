@@ -5,7 +5,7 @@
 import mongoose from 'mongoose';
 
 const publishmentSchema = new mongoose.Schema({
-  name: {
+  user_name: {
     type: String,
     required: true
   },
@@ -17,15 +17,14 @@ const publishmentSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  ocupation: {
+  likes: {
     type: String,
-    required: true
+    default: 0
   },
-  socialNetworks:{
-    facebook : String,
-    twitter : String,
-    linkedin : String,
-  }
+  user: {
+    type: mongoose.Schema.ObjectId, ref: 'User'
+  },
+  comments: [{ type: mongoose.Schema.ObjectId, ref: 'Comments' }]
 });
 
 export const Publishment = mongoose.model('Publishment', publishmentSchema);

@@ -2,48 +2,48 @@ import bcrypt from 'bcrypt';
 import { User } from '../models/user';
 
 export async function getUsers(req, res) {
-    try {
-  
-      const users = await User.find({});
-  
-      if (!users) {
-        return res.status(400).json({
-          ok: false,
-          mensaje: 'Error',
-        });
-      }
-  
-      res.status(200).json({
-        ok: true,
-        usuarios: users,
+  try {
+
+    const users = await User.find({});
+
+    if (!users) {
+      return res.status(400).json({
+        ok: false,
+        mensaje: 'Error',
       });
-    } catch(e){
-      return res.status(500).json({error: 'There is a problem in the server'});
     }
+
+    res.status(200).json({
+      ok: true,
+      usuarios: users,
+    });
+  } catch(e){
+    return res.status(500).json({error: 'There is a problem in the server'});
   }
+}
   
-  export async function getUser(req, res) {
-    try {
-      const { userId } = req.params;
-  
-      const user = await User.findById({_id: userId });
-  
-      if (!user) {
-        return res.status(500).json({
-          ok: false,
-          mensaje: 'Error',
-        });
-      }
-  
-      res.status(200).json({
-        ok: true,
-        usuario: user,
+export async function getUser(req, res) {
+  try {
+    const { userId } = req.params;
+
+    const user = await User.findById({_id: userId });
+
+    if (!user) {
+      return res.status(500).json({
+        ok: false,
+        mensaje: 'Error',
       });
-    } catch(e){
-      console.log(e);
-      return res.status(500).json({error: 'There is a problem in the server'});
     }
+
+    res.status(200).json({
+      ok: true,
+      usuario: user,
+    });
+  } catch(e){
+    console.log(e);
+    return res.status(500).json({error: 'There is a problem in the server'});
   }
+}
   
 export async function createUser(req, res) {
     try {

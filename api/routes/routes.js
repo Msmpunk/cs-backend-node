@@ -14,6 +14,12 @@ import {
     deleteUser
 } from '../controllers/users';
 
+import {
+    createPublishment,
+    getPublishment,
+    getAllPublishmentsByUser
+} from '../controllers/publishment';
+
 const router = Router();
 
 // HOME APP
@@ -25,6 +31,11 @@ router.post('/user', createUser);
 router.get('/user/:userId',authToken, getUser);
 router.put('/user/:userId', authToken, updateUser);
 router.delete('/user/:userId',authToken, deleteUser);
+
+//CRUD publishment
+router.post('/addPublishment', createPublishment);
+router.get('/getPublishment/:userId', getPublishment);
+router.get('/getAllPublishmentsById/:userId', getAllPublishmentsByUser);
 
 
 // LOGIN
