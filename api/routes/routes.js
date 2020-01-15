@@ -18,7 +18,11 @@ import {
     createPublishment,
     getPublishment,
     getAllPublishmentsByUser
-} from '../controllers/publishment';
+} from '../controllers/publishments';
+
+import {
+    createComment
+} from '../controllers/comments';
 
 const router = Router();
 
@@ -36,6 +40,9 @@ router.delete('/user/:userId',authToken, deleteUser);
 router.post('/addPublishment', createPublishment);
 router.get('/getPublishment/:userId', getPublishment);
 router.get('/getAllPublishmentsById/:userId', getAllPublishmentsByUser);
+
+//CRUD comment
+router.post('/addComment', createComment);
 
 
 // LOGIN

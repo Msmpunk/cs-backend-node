@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const commentsSchema = new mongoose.Schema({
+const commentSchema = new mongoose.Schema({
     user_name: {
         type: String,
         required: true
@@ -17,5 +17,5 @@ const commentsSchema = new mongoose.Schema({
     }
 });
 
-export const Comments = mongoose.model('Comments', commentsSchema);
+export const Comment = mongoose.model('Comment', commentSchema);
 

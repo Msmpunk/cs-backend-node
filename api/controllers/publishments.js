@@ -67,8 +67,9 @@ export async function getAllPublishmentsByUser(req, res) {
         const { userId } = req.params;
 
         const user = await User.findById({_id: userId });
+        console.log("TCL: getAllPublishmentsByUser -> user", user)
 
-        const publishments = await Publishment.find({ user_name: user.user_name });
+        const publishments = await Publishment.find({ user_name: user.user_name }).populate('comments');
         console.log("TCL: getPublishment -> user", publishments)
 
         if (!publishments) {
@@ -83,6 +84,7 @@ export async function getAllPublishmentsByUser(req, res) {
             publishments: publishments,
         });
     } catch(e){
+        console.log("TCL: getAllPublishmentsByUser -> e", e)
         return res.status(500).json({error: 'There is a problem in the server'});
     }
 }
