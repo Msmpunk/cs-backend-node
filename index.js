@@ -36,6 +36,7 @@ app.use('/api/v1', router);
 mongoose.connect(`mongodb://${db_host}:27017/${db_name}`, {
   useNewUrlParser: true,
   useCreateIndex: true,
+  useFindAndModify: false,
   useUnifiedTopology: true
 }).then(() => console.log('* Base de datos: \x1b[32m%s\x1b[0m', 'online'))
 
@@ -54,5 +55,5 @@ app.listen(port, () => {
 *
 *********************************************************************************************`;
     console.debug(banner);
-    console.log('* Express server puerto 3000: \x1b[32m%s\x1b[0m', 'online');
+    console.log('* Express server puerto ' +port+': \x1b[32m%s\x1b[0m', 'online');
 })

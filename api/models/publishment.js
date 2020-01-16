@@ -22,11 +22,11 @@ const publishmentSchema = new mongoose.Schema({
     default: 0
   },
   user: {
-    type: mongoose.Schema.ObjectId, ref: 'User'
+    type: mongoose.Schema.ObjectId,
+    ref: 'User'
   },
-  comments: {
-    type: mongoose.Schema.ObjectId, ref: 'Comment'
-  }
+  comments: [{    type: mongoose.Schema.ObjectId,
+    ref: 'Comment'}]
 });
 
 export const Publishment = mongoose.model('Publishment', publishmentSchema);

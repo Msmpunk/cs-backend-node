@@ -16,7 +16,7 @@ import {
 
 import {
     createPublishment,
-    getPublishment,
+    getPublishments,
     getAllPublishmentsByUser
 } from '../controllers/publishments';
 
@@ -30,20 +30,19 @@ const router = Router();
 router.get('/', getHome);
 
 //CRUD USERS
-router.get('/users',authToken, getUsers);
-router.post('/user', createUser);
+router.get('/user/getAll',authToken, getUsers);
+router.post('/user/createUser', createUser);
 router.get('/user/:userId',authToken, getUser);
 router.put('/user/:userId', authToken, updateUser);
 router.delete('/user/:userId',authToken, deleteUser);
 
 //CRUD publishment
-router.post('/addPublishment', createPublishment);
-router.get('/getPublishment/:userId', getPublishment);
-router.get('/getAllPublishmentsById/:userId', getAllPublishmentsByUser);
+router.post('/publishment/createPublishment', createPublishment);
+router.get('/publishment/getAll', getPublishments);
+router.get('/publishment/getAllByUser/:userId', getAllPublishmentsByUser);
 
 //CRUD comment
 router.post('/addComment', createComment);
-
 
 // LOGIN
 router.post('/login', login);

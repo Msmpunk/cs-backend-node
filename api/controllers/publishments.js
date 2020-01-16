@@ -40,37 +40,9 @@ export async function createPublishment(req, res) {
     }
 }
 
-export async function getPublishment(req, res) {
+export async function getPublishments(req, res) {
     try {
-        const { userId } = req.params;
-
-        const user = await User.findById({_id: userId });
-        const publishment = await Publishment.findOne({user_name: user.user_name });
-
-        if (!publishment) {
-            return res.status(400).json({
-                ok: false,
-                mensaje: 'Error',
-            });
-        }
-
-        res.status(200).json({
-            ok: true,
-            publishment: publishment,
-        });
-    } catch(e){
-        return res.status(500).json({error: 'There is a problem in the server'});
-    }
-}
-export async function getAllPublishmentsByUser(req, res) {
-    try {
-        const { userId } = req.params;
-
-        const user = await User.findById({_id: userId });
-        console.log("TCL: getAllPublishmentsByUser -> user", user)
-
-        const publishments = await Publishment.find({ user_name: user.user_name }).populate('comments');
-        console.log("TCL: getPublishment -> user", publishments)
+        const publishments = await Publishment.find({}).populate('comments');
 
         if (!publishments) {
             return res.status(400).json({
@@ -84,7 +56,28 @@ export async function getAllPublishmentsByUser(req, res) {
             publishments: publishments,
         });
     } catch(e){
-        console.log("TCL: getAllPublishmentsByUser -> e", e)
+        return res.status(500).json({error: 'There is a problem in the server'});
+    }
+}
+export async function getAllPublishmentsByUser(req, res) {
+    try {
+        const { userId } = req.params;
+
+        const publishments = await Publishment.find({ user: userId }).populate('comments');
+
+
+        if (!publishments) {
+            return res.status(400).json({
+                ok: false,
+                mensaje: 'Error',
+            });
+        }
+
+        res.status(200).json({
+            ok: true,
+            publishments: publishments,
+        });
+    } catch(e){
         return res.status(500).json({error: 'There is a problem in the server'});
     }
 }

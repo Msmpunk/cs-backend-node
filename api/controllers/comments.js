@@ -22,7 +22,7 @@ export async function createComment(req, res) {
         user: user._id,
       });
   
-      newComment.save((err, commentSave) => {
+      newComment.save(async (err, commentSave) => {
   
         if (err) {
             return res.status(400).json({
@@ -31,6 +31,7 @@ export async function createComment(req, res) {
                 errors: err
             });
         }
+        const publishmentStatus = await Publishment.findOneAndUpdate({_id: publishment}, {$push: {comments: commentSave._id}})
         res.status(201).json({
             ok: true,
             comment: commentSave,
